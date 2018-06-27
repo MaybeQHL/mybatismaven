@@ -3,7 +3,44 @@
                 PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.maybe.pojo.IUser">
-    <select id="findById" parameterType="int" resultType="cn.maybe.pojo.User">
+    <select id="findById" parameterType="int" resultType="User">
         SELECT * FROM user WHERE id=#{id}
+
     </select>
+    <select id="findByUserName"  resultType="User">
+        SELECT * FROM user
+        <if test="_parameter != null">
+             where username like #{'%_parameter%'}
+      </if>
+
+    </select>
+
+
+    <select id="findUserListById"    resultType="User">
+        SELECT * FROM user
+
+    </select>
+    <insert id="insertUser">
+  insert into user (username,sex)
+  values (#{username},#{sex})
+
+        <!--
+              将insert插入数据后生成的主键返回到user对象中
+              SELECT LAST_INSERT_ID() 得到刚才插入的进去的记录的主键值，只能是自增主键
+              keyProperty: 将查询到的主键值设置到这个parameterType指定的哪个属性
+              order : 相对于sql语句来说的执行顺序
+               -->
+        <selectKey keyProperty="id" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <delete
+            id="deleteUser"
+            parameterType="int"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20">
+         delete from user where id = #{id}
+    </delete>
 </mapper>
