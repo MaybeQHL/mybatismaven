@@ -1,6 +1,8 @@
 package test;
 
-import cn.maybe.pojo.User;
+import cn.maybe.mybatis.mapper.UserMapper;
+import cn.maybe.mybatis.pojo.User;
+import cn.maybe.mybatis.utils.MyBatisUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +14,28 @@ import java.io.Reader;
 import java.util.List;
 
 public class TestMain {
+
+
+
+    @Test
+    public  void  testMybatisDT() throws Exception {
+
+        //动态代理(学习测试。。。。)
+
+        //通过工厂得到SqlSession
+        SqlSession session = MyBatisUtils.openSession(true);
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+        //添加用户
+        User userNew=new User();
+        userNew.setSex(1);
+        userNew.setUsername("名字1");
+        userMapper.insertUser(userNew);
+        System.out.println(userNew.getId());
+        //查询用户
+        User user = userMapper.findById(1);
+        System.out.println(user.getUsername());
+        session.close();
+    }
 
 
 

@@ -1,4 +1,4 @@
-package cn.maybe.pojo;
+package cn.maybe.mybatis.pojo;
 
 
 public class User  {

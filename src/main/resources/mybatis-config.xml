@@ -11,7 +11,7 @@
     </settings>
     <typeAliases>
         <!-- 其实就是将bean的替换成一个短的名字-->
-        <typeAlias type="cn.maybe.pojo.User"  alias="User"/>
+        <typeAlias type="cn.maybe.mybatis.pojo.User" alias="User"/>
     </typeAliases>
     <!--对事务的管理和连接池的配置-->
     <environments default="development">
@@ -27,6 +27,7 @@
     </environments>
     <!--mapping文件路径配置-->
     <mappers>
-        <mapper resource="mapper/UserMapper.xml" />
+        <!--<mapper resource="mapper/UserMapper.xml" />-->
+       <package name="cn.maybe.mybatis.mapper" ></package>
     </mappers>
 </configuration>

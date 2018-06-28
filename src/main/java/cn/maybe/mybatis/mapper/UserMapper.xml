@@ -16,11 +16,11 @@
     </select>
 
 
-    <select id="findUserListById"    resultType="User">
+    <select id="findUserList"    resultType="User">
         SELECT * FROM user
 
     </select>
-    <insert id="insertUser">
+    <insert id="insertUser" parameterType="User">
   insert into user (username,sex)
   values (#{username},#{sex})
 
