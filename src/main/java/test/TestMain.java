@@ -23,17 +23,25 @@ public class TestMain {
         //动态代理(学习测试。。。。)
 
         //通过工厂得到SqlSession
-        SqlSession session = MyBatisUtils.openSession(true);
+        SqlSession session = MyBatisUtils.openSession(false);
         UserMapper userMapper = session.getMapper(UserMapper.class);
         //添加用户
-        User userNew=new User();
-        userNew.setSex(1);
-        userNew.setUsername("名字1");
-        userMapper.insertUser(userNew);
-        System.out.println(userNew.getId());
+//        User userNew=new User();
+//        userNew.setSex(1);
+//        userNew.setUsername("名字1");
+//        userMapper.insertUser(userNew);
+//        System.out.println(userNew.getId());
         //查询用户
-        User user = userMapper.findById(1);
-        System.out.println(user.getUsername());
+//        User user = userMapper.findById(1);
+//        System.out.println(user.getUsername());
+          User user2=new User();
+        user2.setUsername("张三");
+        List<User> userList=  userMapper.getUserListMap(user2);
+        for (User item:
+        userList) {
+            System.out.println(item.getUsername()+item.getSex());
+        }
+
         session.close();
     }
 

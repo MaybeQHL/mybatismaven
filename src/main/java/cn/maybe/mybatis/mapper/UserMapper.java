@@ -13,5 +13,6 @@ public interface UserMapper {
     public User findById(Integer id);
     public   List<User> findUserList();
     public   void insertUser(User user);
+    public  List<User> getUserListMap(User user);
 
 }
