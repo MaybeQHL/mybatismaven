@@ -1,14 +1,17 @@
 package cn.maybe.mybatis.pojo;
 
+public class User {
+    private Integer id;
 
-public class User  {
-    private int id;
+    private String username;
 
-    public int getId() {
+    private Boolean sex;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -17,19 +20,14 @@ public class User  {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
-    public int getSex() {
+    public Boolean getSex() {
         return sex;
     }
 
-    public void setSex(int sex) {
+    public void setSex(Boolean sex) {
         this.sex = sex;
     }
-
-    private String username;
-    private int sex;
-
-
 }

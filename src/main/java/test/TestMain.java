@@ -2,6 +2,7 @@ package test;
 
 import cn.maybe.mybatis.mapper.UserMapper;
 import cn.maybe.mybatis.pojo.User;
+import cn.maybe.mybatis.pojo.UserExample;
 import cn.maybe.mybatis.utils.MyBatisUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -34,13 +35,20 @@ public class TestMain {
         //查询用户
 //        User user = userMapper.findById(1);
 //        System.out.println(user.getUsername());
-          User user2=new User();
-        user2.setUsername("张三");
-        List<User> userList=  userMapper.getUserListMap(user2);
+//        User userNew=new User();
+//        userNew.setSex(true);
+//        userNew.setUsername("名字1");
+//        userMapper.insert(userNew);
+//        session.commit();
+
+        UserExample userExample=new UserExample();
+        userExample.setDistinct(true);
+        List<User> userList=  userMapper.selectByExample(userExample);
         for (User item:
         userList) {
             System.out.println(item.getUsername()+item.getSex());
         }
+
 
         session.close();
     }
@@ -72,7 +80,7 @@ public class TestMain {
            //添加
             User  userNew=new User();
             userNew.setUsername("asd");
-            userNew.setSex(1);
+            userNew.setSex(true);
             session.insert("insertUser",userNew);
             System.out.println(userNew.getId());
            //删除

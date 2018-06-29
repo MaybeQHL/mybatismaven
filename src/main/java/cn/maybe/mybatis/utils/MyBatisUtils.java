@@ -13,14 +13,9 @@ public class MyBatisUtils {
 
         try{
 
-            factory =
-
-                    new SqlSessionFactoryBuilder()
-
+            factory = new SqlSessionFactoryBuilder()
                             .build(
-
-                                    Resources.getResourceAsStream("mybatis-config.xml")
-
+                             Resources.getResourceAsStream("mybatis-config.xml")
                             );
 
         }catch(Exception e){

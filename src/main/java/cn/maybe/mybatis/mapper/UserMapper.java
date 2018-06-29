@@ -1,20 +1,30 @@
 package cn.maybe.mybatis.mapper;
 
 import cn.maybe.mybatis.pojo.User;
-
+import cn.maybe.mybatis.pojo.UserExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-/**
- *用户管理mapper
- *
- */
 public interface UserMapper {
+    int countByExample(UserExample example);
 
+    int deleteByExample(UserExample example);
 
-    public  List<User> getUserListMap(User user);
-    public User findById(Integer id);
-    public   List<User> findUserList();
-    public   void insertUser(User user);
+    int deleteByPrimaryKey(Integer id);
 
+    int insert(User record);
 
+    int insertSelective(User record);
+
+    List<User> selectByExample(UserExample example);
+
+    User selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByPrimaryKeySelective(User record);
+
+    int updateByPrimaryKey(User record);
 }
